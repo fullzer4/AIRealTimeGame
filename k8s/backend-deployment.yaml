@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: seu-registro/backend:latest
+        env:
+          - name: PYTHONUNBUFFERED
+            value: "1"
+        ports:
+          - containerPort: 8001
+        resources:
+          requests:
+            cpu: "3"
+            memory: "4Gi"
+          limits:
+            cpu: "6"
+            memory: "8Gi"

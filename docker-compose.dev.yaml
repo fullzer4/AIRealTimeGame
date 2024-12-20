@@ -7,8 +7,6 @@ services:
       - "8001:8001"
     volumes:
       - ./backend:/app
-    environment:
-      - PYTHONUNBUFFERED=1
 
   frontend:
     build:
@@ -18,5 +16,3 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
-    environment:
-      - NODE_ENV=production
