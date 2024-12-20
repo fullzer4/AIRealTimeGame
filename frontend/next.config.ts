@@ -5,9 +5,6 @@ const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
   },
-  env: {
-    NODE_ENV: "production",
-  },
   output: "export",
   exportTrailingSlash: true,
   productionBrowserSourceMaps: false,
