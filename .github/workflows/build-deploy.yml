@@ -14,25 +14,25 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: fullzer4
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
       - name: Build Backend Image
-        run: docker build -t docker.io/${{ secrets.DOCKERHUB_USERNAME }}/backend_ai_realtime_pong:latest ./backend
+        run: docker build -t docker.io/fullzer4/backend_ai_realtime_pong:latest ./backend
 
       - name: Build Frontend Image
-        run: docker build -t docker.io/${{ secrets.DOCKERHUB_USERNAME }}/frontend_ai_realtime_pong:latest ./frontend
+        run: docker build -t docker.io/fullzer4/frontend_ai_realtime_pong:latest ./frontend
 
       - name: Push Backend Image
-        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/backend_ai_realtime_pong:latest
+        run: docker push docker.io/fullzer4/backend_ai_realtime_pong:latest
 
       - name: Push Frontend Image
-        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/frontend_ai_realtime_pong:latest
+        run: docker push docker.io/fullzer4/frontend_ai_realtime_pong:latest
 
       - name: Deploy to K8s
         run: |
-          kubectl set image deployment/backend-deployment backend=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/backend_ai_realtime_pong:latest -n ai_realtime_pong_prod
-          kubectl set image deployment/frontend-deployment frontend=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/frontend_ai_realtime_pong:latest -n ai_realtime_pong_prod
+          kubectl set image deployment/backend-deployment backend=docker.io/fullzer4/backend_ai_realtime_pong:latest -n ai_realtime_pong_prod
+          kubectl set image deployment/frontend-deployment frontend=docker.io/fullzer4/frontend_ai_realtime_pong:latest -n ai_realtime_pong_prod
           kubectl apply -f k8s/
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
