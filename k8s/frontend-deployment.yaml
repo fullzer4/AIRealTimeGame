@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: seu-registro/frontend:latest
+        image: docker.io/fullzer4/frontend_ai_realtime_pong:latest
         env:
           - name: NODE_ENV
             value: "production"

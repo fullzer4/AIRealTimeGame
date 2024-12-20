@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: seu-registro/backend:latest
+        image: docker.io/fullzer4/frontend_ai_realtime_pong:latest
         env:
           - name: PYTHONUNBUFFERED
             value: "1"
