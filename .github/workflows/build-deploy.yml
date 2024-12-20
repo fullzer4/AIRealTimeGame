@@ -29,10 +29,14 @@ jobs:
       - name: Push Frontend Image
         run: docker push docker.io/fullzer4/frontend_ai_realtime_pong:latest
 
+      - name: Set Kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+          chmod 600 ~/.kube/config
+
       - name: Deploy to K8s
         run: |
           kubectl set image deployment/backend-deployment backend=docker.io/fullzer4/backend_ai_realtime_pong:latest -n ai_realtime_pong_prod
           kubectl set image deployment/frontend-deployment frontend=docker.io/fullzer4/frontend_ai_realtime_pong:latest -n ai_realtime_pong_prod
           kubectl apply -f k8s/
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
